@@ -34,3 +34,8 @@ services:
       - MYSQL_DATABASE=laravel
       - TZ=Asia/Tokyo
     container_name: mysql
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - 3306:3306
