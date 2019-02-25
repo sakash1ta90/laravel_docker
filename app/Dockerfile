@@ -1,4 +1,8 @@
-FROM php:7.3.1-fpm-alpine3.8
+FROM php:7.3-fpm-alpine3.8
 
-RUN docker-php-ext-install pdo_mysql \
- && pecl install xdebug
+RUN apk upgrade --update && \
+  apk --no-cache add icu-dev autoconf make g++ gcc
+RUN pecl install -f xdebug-2.7.0beta1 && \
+    docker-php-ext-enable xdebug
+
+RUN docker-php-ext-install pdo_mysql
