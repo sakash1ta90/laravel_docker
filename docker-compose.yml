@@ -1,16 +1,5 @@
 version: "3.7"
 services:
-  nginx:
-    image: nginx:alpine
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    ports:
-      - 80:80
-    links:
-      - app
-    depends_on:
-      - app
-    container_name: nginx
   app:
     build:
       context: .
@@ -27,6 +16,17 @@ services:
       - DB_USERNAME=root
       - DB_PASSWORD=root
     container_name: app
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    links:
+      - app
+    depends_on:
+      - app
+    container_name: nginx
   mysql:
     build: ./mysql
     environment:

@@ -6,4 +6,4 @@ RUN apk upgrade --update && \
   docker-php-ext-enable xdebug && \
   docker-php-ext-install pdo_mysql
 
-ADD override.ini /usr/local/etc/php/conf.d/overrides.ini
+COPY app/override.ini /usr/local/etc/php/conf.d/overrides.ini
